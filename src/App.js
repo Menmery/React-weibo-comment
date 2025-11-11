@@ -147,7 +147,6 @@ const App = () => {
         <div className="reply-list">
           {/* 2.循环渲染评论 */}
           {list.map(item => {
-            {/* 评论项 */ }
             return (
               < div key={item.rpid} className="reply-item" >
                 {/* 头像 */}

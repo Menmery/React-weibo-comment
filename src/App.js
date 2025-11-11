@@ -81,6 +81,26 @@ const App = () => {
   const [list, setList] = useState(_.orderBy(defaultList, 'like', 'desc'))
   const [currentTab, setCurrentTab] = useState('hot')
 
+  // 6.发表评论
+  const [content, setContent] = useState('')
+  const handelSentClick = () => {
+    setList([
+      ...list,
+      {
+        rpid: 100,
+        user: {
+          uid: '30009257',
+          avatar,
+          uname: '黑马前端',
+        },
+        content: content,
+        ctime: '10-19 09:00',
+        like: 66,
+      }
+    ])
+    setContent('')
+  }
+
   // 4.点击删除
   const handelClick = (id) => {
     setList(list.filter(item => item.rpid !== id)
@@ -136,10 +156,12 @@ const App = () => {
             <textarea
               className="reply-box-textarea"
               placeholder="发一条友善的评论"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
             />
             {/* 发布按钮 */}
             <div className="reply-box-send">
-              <div className="send-text">发布</div>
+              <div className="send-text" onClick={handelSentClick}>发布</div>
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import './App.scss'
 import avatar from './images/bozai.png'
 import { useState } from 'react'
 import _ from 'lodash'
+import classNames from 'classnames'
 
 /**
  * 评论列表的渲染和操作
@@ -109,7 +110,12 @@ const App = () => {
             {/* 高亮类名： active */}
             {tabs.map(item => {
               return (
-                <span key={item.type} className={item.type === currentTab ? 'nav-item active' : 'nav-item'} onClick={() => ontoggle(item.type)}>{item.text}</span>
+                <span key={item.type}
+                  // className={item.type === currentTab ? 'nav-item active' : 'nav-item'}
+                  className={classNames({ 'nav-item': true, 'active': item.type === currentTab })}
+                  onClick={() => ontoggle(item.type)}>
+                  {item.text}
+                </span>
               )
             })}
           </li>

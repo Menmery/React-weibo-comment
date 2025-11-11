@@ -5,6 +5,7 @@ import _ from 'lodash'
 import classNames from 'classnames'
 import { v4 as uuidV4 } from 'uuid'
 import dayjs from 'dayjs'
+import { useRef } from 'react'
 
 /**
  * 评论列表的渲染和操作
@@ -85,6 +86,7 @@ const App = () => {
 
   // 6.发表评论
   const [content, setContent] = useState('')
+  const inputRef = useRef(null)
   const handelSentClick = () => {
     setList([
       ...list,
@@ -101,6 +103,7 @@ const App = () => {
       }
     ])
     setContent('')
+    inputRef.current.focus()
   }
 
   // 4.点击删除
@@ -160,6 +163,7 @@ const App = () => {
               placeholder="发一条友善的评论"
               value={content}
               onChange={(e) => setContent(e.target.value)}
+              ref={inputRef}
             />
             {/* 发布按钮 */}
             <div className="reply-box-send">
